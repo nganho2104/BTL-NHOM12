@@ -1,0 +1,5 @@
+com.example.btl_comicapp.test.app-core-1.6.1-0 C:\Users\vnplu\.gradle\caches\8.10.2\transforms\3c078c143a0ed5f709e7bd5170a5dc73\transformed\core-1.6.1\res
+com.example.btl_comicapp.test.app-androidTest-1 D:\Java\BTL_comicapp\app\build\generated\res\resValues\androidTest\debug
+com.example.btl_comicapp.test.app-mergeDebugAndroidTestResources-2 D:\Java\BTL_comicapp\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.btl_comicapp.test.app-mergeDebugAndroidTestResources-3 D:\Java\BTL_comicapp\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.btl_comicapp.test.app-debugAndroidTest-4 D:\Java\BTL_comicapp\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
