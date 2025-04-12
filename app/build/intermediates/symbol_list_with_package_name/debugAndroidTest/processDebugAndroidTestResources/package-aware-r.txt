@@ -1,0 +1,3 @@
+com.example.btl_comicapp.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
