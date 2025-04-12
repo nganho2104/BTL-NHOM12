@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.floatingactionbutton.FloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fabProfile"
+    android:layout_width="60dp"
+    android:layout_height="58dp"
+    android:layout_margin="16dp"
+    android:contentDescription="Thêm truyện"
+    android:src="@drawable/img_1"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
