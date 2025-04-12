@@ -37,7 +37,11 @@ public class FavoriteActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.rvStory);
         rv.setLayoutManager(new LinearLayoutManager(this));
+<<<<<<< HEAD
         adapter = new StoryAdapter(this, favoriteStories, true,currentRole);
+=======
+        adapter = new StoryAdapter(this, favoriteStories, true,currentRole); // đang ở tủ truyện
+>>>>>>> 58fc3088dc5f078ec970f55bd838becefc93966f
         rv.setAdapter(adapter);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
