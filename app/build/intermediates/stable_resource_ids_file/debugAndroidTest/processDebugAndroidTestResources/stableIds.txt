@@ -1,0 +1,2 @@
+com.example.btl_comicapp.test:style/WhiteBackgroundTheme = 0x7f010001
+com.example.btl_comicapp.test:style/WhiteBackgroundDialogTheme = 0x7f010000
