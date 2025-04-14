@@ -10,8 +10,7 @@ public class Story implements Serializable {
     private String linkAnh;
     private String idCategory;
     private String tenChap;
-
-    // ⚠️ BẮT BUỘC: Constructor rỗng để Firebase sử dụng
+    private boolean isFavorite;
     public Story() {
     }
 
@@ -42,5 +41,12 @@ public class Story implements Serializable {
     public void setLinkAnh(String linkAnh) { this.linkAnh = linkAnh; }
     public void setIdCategory(String idCategory) { this.idCategory = idCategory; }
     public void setTenChap(String tenChap) { this.tenChap = tenChap; }
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 }
 

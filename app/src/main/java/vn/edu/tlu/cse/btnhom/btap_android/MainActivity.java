@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Story> list;
     private FirebaseAuth auth;
     private String currentRole = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,15 +37,38 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        // Khởi tạo RecyclerView và adapter
         RecyclerView rv = findViewById(R.id.rvStory);
         rv.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-
         adapter = new StoryAdapter(this, list, false, currentRole);
         rv.setAdapter(adapter);
 
+        // Lấy role ngay khi bắt đầu màn hình
+        if (auth.getCurrentUser() != null) {
+            String uid = auth.getCurrentUser().getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    currentRole = snapshot.child("role").getValue(String.class);
+
+                    // Cập nhật adapter với role đã lấy
+                    adapter = new StoryAdapter(MainActivity.this, list, false, currentRole);
+                    ((RecyclerView) findViewById(R.id.rvStory)).setAdapter(adapter);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(MainActivity.this, "Lỗi tải thông tin người dùng", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        // Tải dữ liệu truyện từ Firebase
         loadStoriesFromFirebase();
 
+        // SearchView filter
         androidx.appcompat.widget.SearchView sv = findViewById(R.id.searchView);
         sv.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
@@ -56,53 +80,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ///  hien thi chuc nag them cho tacgia
-        FloatingActionButton fab = findViewById(R.id.fabProfile);
-        fab.setVisibility(View.GONE); // Mặc định ẩn
-
-        if (auth.getCurrentUser() != null) {
-            String uid = auth.getCurrentUser().getUid();
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    currentRole = snapshot.child("role").getValue(String.class);
-                    if ("tacgia".equals(currentRole)) {
-                        fab.setVisibility(View.VISIBLE);
-                        fab.setOnClickListener(v -> {
-                            startActivity(new Intent(MainActivity.this, AddEditStoryActivity.class));
-                        });
-                    }
-
-                    adapter = new StoryAdapter(MainActivity.this, list, false, currentRole);
-                    ((RecyclerView) findViewById(R.id.rvStory)).setAdapter(adapter);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {}
-            });
-        } else {
-            adapter = new StoryAdapter(this, list, false, null);
-            ((RecyclerView) findViewById(R.id.rvStory)).setAdapter(adapter);
-        }
-
-
+        // Chức năng người dùng
         ImageView imgAvatar = findViewById(R.id.imgAvatar);
         TextView tvLogin = findViewById(R.id.tvLogin);
+
         imgAvatar.setOnClickListener(v -> {
             if (auth.getCurrentUser() == null) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             } else {
-                String[] options = { "Tủ truyện", "Đăng xuất"};
+                // Kiểm tra role khi người dùng đăng nhập
+                String[] options = {"Thêm truyện", "Tủ truyện", "Đăng xuất"};
                 new AlertDialog.Builder(this)
                         .setTitle("Tùy chọn")
                         .setItems(options, (dialog, which) -> {
                             if (which == 0) {
-                                startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
+                                startActivity(new Intent(MainActivity.this, AddEditStoryActivity.class));
                             } else if (which == 1) {
+                                startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
+                            } else if (which == 2) {
                                 auth.signOut();
-                                Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(this, LoginActivity.class));
+                                Toast.makeText(MainActivity.this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                                 finish();
                             }
                         })
@@ -110,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Cập nhật giao diện khi người dùng đã đăng nhập
         if (auth.getCurrentUser() != null) {
             imgAvatar.setVisibility(View.VISIBLE);
             tvLogin.setVisibility(View.GONE);
@@ -122,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
             });
         }
+
+        ImageView imgLunaLogo = findViewById(R.id.imgLunaLogo);
+        imgLunaLogo.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class); // hoặc trang khác
+            startActivity(intent);
+        });
     }
 
     private void loadStoriesFromFirebase() {
@@ -151,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 filtered.add(s);
             }
         }
-        adapter = new StoryAdapter(this, filtered, false,currentRole);
+        adapter = new StoryAdapter(this, filtered, false, currentRole);
         ((RecyclerView) findViewById(R.id.rvStory)).setAdapter(adapter);
     }
 }

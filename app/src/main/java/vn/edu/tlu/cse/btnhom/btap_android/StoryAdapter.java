@@ -81,11 +81,11 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryVH> {
             // Màn hình chính
 
             if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-                // Không đăng nhập: ẩn cả hai
+                // Không đăng nhập: ẩn cả hai nút
                 holder.btnFavorite.setVisibility(View.GONE);
                 holder.btnDelete.setVisibility(View.GONE);
             } else if ("tacgia".equals(role)) {
-                // Đăng nhập với role là tacgia: hiện cả hai
+                // Đăng nhập với role là tacgia: hiện cả hai nút
                 holder.btnFavorite.setVisibility(View.VISIBLE);
                 holder.btnDelete.setVisibility(View.VISIBLE);
             } else {
@@ -114,6 +114,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryVH> {
             });
         }
     }
+
 
     @Override
     public int getItemCount() {

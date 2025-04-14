@@ -1,7 +1,9 @@
 package vn.edu.tlu.cse.btnhom.btap_android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,6 +45,11 @@ public class FavoriteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tủ truyện");
         loadFavorites();
+
+        ImageView imgLunaLogo = findViewById(R.id.imgToolbarLogo);
+        imgLunaLogo.setOnClickListener(v -> {
+            startActivity(new Intent(FavoriteActivity.this, MainActivity.class));
+        });
     }
 
     private void loadFavorites() {
