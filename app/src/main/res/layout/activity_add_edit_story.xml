@@ -7,14 +7,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-        <EditText android:id="@+id/etTitle" android:layout_width="match_parent" android:hint="Tên truyện" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etAuthor" android:layout_width="match_parent" android:hint="Tác giả" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etDesc" android:layout_width="match_parent" android:hint="Mô tả" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etImage" android:layout_width="match_parent" android:hint="Link ảnh" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etCategory" android:layout_width="match_parent" android:hint="ID thể loại" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etChap" android:layout_width="match_parent" android:hint="Tên chương" android:layout_height="wrap_content"/>
+        <!-- Logo nằm giữa phía trên -->
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/luna_book_logo"
+            android:contentDescription="Logo Luna Book"
+            android:scaleType="centerInside" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên truyện" />
+
+        <EditText
+            android:id="@+id/etAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tác giả" />
+
+        <EditText
+            android:id="@+id/etDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mô tả" />
+
+        <EditText
+            android:id="@+id/etImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Link ảnh" />
+
+        <EditText
+            android:id="@+id/etCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID thể loại" />
+
+        <EditText
+            android:id="@+id/etChap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên chương" />
+
         <Button
             android:id="@+id/btnChooseImage"
             android:layout_width="wrap_content"
@@ -26,9 +67,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button android:id="@+id/btnSave"
+        <Button
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu truyện"/>
+            android:text="Lưu truyện" />
+
     </LinearLayout>
 </ScrollView>

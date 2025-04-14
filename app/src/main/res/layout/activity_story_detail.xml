@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -8,37 +9,53 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Hình ảnh chi tiết truyện với bo góc -->
         <ImageView
             android:id="@+id/imgDetail"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:scaleType="centerCrop" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:outlineProvider="background" />
 
+        <!-- Tiêu đề truyện -->
         <TextView
             android:id="@+id/tvDetailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:textColor="#333333"
             android:layout_marginTop="8dp" />
 
+        <!-- Tác giả -->
         <TextView
             android:id="@+id/tvDetailAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="18sp"
+            android:textColor="#666666"
+            android:layout_marginTop="4dp" />
 
+        <!-- Mô tả chi tiết truyện -->
         <TextView
             android:id="@+id/tvDetailDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#444444"
             android:layout_marginTop="12dp"
-            android:textSize="14sp" />
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:text="Mô tả về truyện..." />
+
+        <!-- RecyclerView cho các chương truyện -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvChapters"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp" />
-
     </LinearLayout>
 </ScrollView>

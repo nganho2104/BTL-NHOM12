@@ -5,6 +5,10 @@
     <mapping directory="" vcs="Git" />
 =======
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+<<<<<<< HEAD
 >>>>>>> 799a92d429db91100ec338f1b5aac2f1664f8e9a
+=======
+    <mapping directory="$PROJECT_DIR$/BTL-NHOM12" vcs="Git" />
+>>>>>>> tuan
   </component>
 </project>
